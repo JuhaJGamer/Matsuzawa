@@ -152,7 +152,7 @@ namespace Matsuzawa
                     }
                 }
             }
-            throw new NotImplementedException();
+            NumTest(numerals, seconds); //Begin the test;
         }
 
          /// <summary>
