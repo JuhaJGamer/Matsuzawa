@@ -16,7 +16,7 @@ namespace Matsuzawa
         /// menu[num], the string list for the menu options.
         /// </summary>
         static readonly string[] menu1 = { "3-numeral", "9-numeral", "9-numeral timed at 0.5 s", "Advanced", "Quit" }; // Menu string for the main menu
-        static readonly string[] menu2 = { "Numeral count: {0}", "Timing: {0}" }; // Menu string
+        static readonly string[] menu2 = { "Numeral count: {0}", "Timing: {0:0.00} s" }; // Menu string
         /// <summary>
         /// xxColor, colors for the application
         /// </summary>
@@ -100,58 +100,55 @@ namespace Matsuzawa
                 {
                     MenuChosenColor(option, i);
                     Console.SetCursorPosition(3, 3 + i);
-                    Console.Write(String.Format(menu2[i], i == 0 ? numerals : seconds));
+                    Console.Write(String.Format(menu2[i], i == 0 ? numerals : seconds));                   
+                }
 
-                    // Console interation
-                    ConsoleKey key = Console.ReadKey().Key; // Read key
-                    if (key == ConsoleKey.UpArrow) // If up arrow
+                // Console interation
+                ConsoleKey key = Console.ReadKey().Key; // Read key
+                if (key == ConsoleKey.UpArrow) // If up arrow
+                {
+                    if (option != 0) // Unless option is the first one
                     {
-                        if (option != 0) // Unless option is the first one
-                        {
-                            option = (option - 1); // Go up
-                        }
+                        option = (option - 1); // Go up
                     }
-                    else if (key == ConsoleKey.DownArrow)
+                }
+                else if (key == ConsoleKey.DownArrow)
+                {
+                    if (option != menu2.Length - 1) // Unless option is the last one
                     {
-                        if (option != menu2.Length - 1) // Unless option is the last one
-                        {
-                            option = (option + 1); // Go down
-                        }
+                        option = (option + 1); // Go down
                     }
-                    else if (key == ConsoleKey.Enter) // If enter
+                }
+                else if (key == ConsoleKey.Enter) // If enter
+                {
+                    break; // Break
+                }
+                else if (key == ConsoleKey.RightArrow) // If right arrow
+                {
+                    if (option == 0)
                     {
-                        break; // Break
+                        numerals = (numerals % 9) + 1; // Increment numerals (while staying in bounds 1-9).
+                                                       // Quick explanation:
+                                                       // % is the modulo operator
+                                                       // 1 mod 9 is 1. 1 + 1 is 2. It incremented by one. same goes for all numbers 1-8
+                                                       // 9 mod 9 is 0. 0+1 is one. It loops back around to 1 if the option ias already nine.
                     }
-                    else if (key == ConsoleKey.RightArrow) // If right arrow
+                    else
                     {
-                        if(option == 0)
-                        {
-                            numerals = (numerals % 9) + 1; // Increment numerals (while staying in bounds 1-9).
-                            // Quick explanation:
-                            // % is the modulo operator
-                            // 1 mod 9 is 1. 1 + 1 is 2. It incremented by one. same goes for all numbers 1-8
-                            // 9 mod 9 is 0. 0+1 is one. It loops back around to 1 if the option ias already nine.
-                        }
-                        else
-                        {
-                            seconds += 0.1f; // add 0.1f to the value
-                        }
+                        seconds += 0.1f; // add 0.1f to the value
                     }
-                    else if (key == ConsoleKey.LeftArrow) // If left arrow
+                }
+                else if (key == ConsoleKey.LeftArrow) // If left arrow
+                {
+                    if (option == 0)
                     {
-                        if (option == 0)
-                        {
-                            numerals = (numerals + 8) % 9; // Increment numerals (while staying in bounds 1-9).
-                            // Quick explanation:
-                            // % is the modulo operator
-                            // 1 mod 9 is 1. 1 + 1 is 2. It incremented by one. same goes for all numbers 1-8
-                            // 9 mod 9 is 0. 0+1 is one. It loops back around to 1 if the option ias already nine.
-                            numerals = numerals == 0 ? 9 : numerals; //Loop around
-                        }
-                        else
-                        {
-                            seconds += 0.1f; // add 0.1f to the value
-                        }
+                        numerals = (numerals + 8) % 9; // Decrement numerals (while staying in bounds 1-9).
+                        // It makes sense if you think about it long enough. 
+                        numerals = numerals == 0 ? 9 : numerals; //Loop around
+                    }
+                    else
+                    {
+                        seconds -= 0.1f; // remove 0.1f from the value
                     }
                 }
             }
