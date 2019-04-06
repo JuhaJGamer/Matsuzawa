@@ -141,7 +141,7 @@ namespace Matsuzawa
                     {
                         if (option == 0)
                         {
-                            numerals = (numerals + 8 ) % 9 // Increment numerals (while staying in bounds 1-9).
+                            numerals = (numerals + 8) % 9; // Increment numerals (while staying in bounds 1-9).
                             // Quick explanation:
                             // % is the modulo operator
                             // 1 mod 9 is 1. 1 + 1 is 2. It incremented by one. same goes for all numbers 1-8
@@ -456,7 +456,7 @@ namespace Matsuzawa
         static void MenuChosenColor(int option, int i)
         {
             Console.ForegroundColor = option == i ? bgColor : fgColor; // If option is selected, set foreground blue. Otherwise set foreground white.
-            Console.BackgroundColor = option != i ? bgColor : bgColor; // If option isn't selected (note difference to above), set background white. Otherwise set background blue.
+            Console.BackgroundColor = option == i ? fgColor : bgColor; // If option isn't selected (note difference to above), set background white. Otherwise set background blue.
         }
 
          /// <summary>
