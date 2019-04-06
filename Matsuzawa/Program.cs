@@ -53,9 +53,9 @@ namespace Matsuzawa
                             NumTest(9, 0.5f); // Start 9-numeral timed test
                             break;
                         case 3:
-                            CustomTest();
+                            CustomTest(); // Start a custom test
                             break;
-                        case 4:
+                        case 4: // Quit game
                             return;
                         default: // Something's REALLY wrong. Probably a rare CPU or RAM error
                             ErrorMessage("ERROR: Unexpected value", "Menu() returned a bad value\n\nExtra info:\nValue: " + option.ToString()); // Show error message
