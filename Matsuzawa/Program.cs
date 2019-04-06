@@ -57,7 +57,7 @@ namespace Matsuzawa
                             break;
                         case 4: // Quit game
                             return;
-                        default: // Something's REALLY wrong. Probably a rare CPU or RAM error
+                        default: // Something's REALLY wrong. Probably a rare CPU or RAM error. Or I seriously fucked up
                             ErrorMessage("ERROR: Unexpected value", "Menu() returned a bad value\n\nExtra info:\nValue: " + option.ToString()); // Show error message
                             return;
                     }
