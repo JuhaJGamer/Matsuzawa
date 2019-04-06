@@ -531,7 +531,7 @@ namespace Matsuzawa
          /// <returns>The grid array</returns>
         static int[,] FillGrid(int numerals)
         {
-            if(numerals > 1 || numerals < 1)
+            if(numerals > 9 || numerals < 1)
             {
                 return new int[0,0];
             }
