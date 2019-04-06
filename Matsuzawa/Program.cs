@@ -16,7 +16,7 @@ namespace Matsuzawa
         /// menu[num], the string list for the menu options.
         /// </summary>
         static readonly string[] menu1 = { "3-numeral", "9-numeral", "9-numeral timed at 0.5 s", "Advanced", "Quit" }; // Menu string for the main menu
-        static readonly string[] menu2 = { "Numeral count: {0}", "Timing: {0:0.00} s" }; // Menu string
+        static readonly string[] menu2 = { "Numeral count: {0}", "Timing: {0:0.00} s", "Start test" }; // Menu string
         /// <summary>
         /// xxColor, colors for the application
         /// </summary>
@@ -121,7 +121,7 @@ namespace Matsuzawa
                 }
                 else if (key == ConsoleKey.Enter) // If enter
                 {
-                    break; // Break
+                    if (option == 2) break;
                 }
                 else if (key == ConsoleKey.RightArrow) // If right arrow
                 {
@@ -133,7 +133,7 @@ namespace Matsuzawa
                                                        // 1 mod 9 is 1. 1 + 1 is 2. It incremented by one. same goes for all numbers 1-8
                                                        // 9 mod 9 is 0. 0+1 is one. It loops back around to 1 if the option ias already nine.
                     }
-                    else
+                    else if (option == 1)
                     {
                         seconds += 0.1f; // add 0.1f to the value
                     }
@@ -146,7 +146,7 @@ namespace Matsuzawa
                         // It makes sense if you think about it long enough. 
                         numerals = numerals == 0 ? 9 : numerals; //Loop around
                     }
-                    else
+                    else if (option == 1)
                     {
                         seconds -= 0.1f; // remove 0.1f from the value
                     }
