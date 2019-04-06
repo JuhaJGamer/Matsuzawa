@@ -52,7 +52,7 @@ namespace Matsuzawa
                         case 2:
                             NumTest(9, 0.5f); // Start 9-numeral timed test
                             break;
-                        case 5:
+                        case 3:
                             CustomTest();
                             break;
                         case 4:
